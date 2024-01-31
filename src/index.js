@@ -4,10 +4,13 @@ import App from './App';
 
 import { createTheme, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import 'mantine-flagpack/styles.css';
 import './index.css';
 
 const theme = createTheme({
-  /** Your theme override here */
+  fontFamily: "Rubik, sans-serif",
+  headings: { fontFamily: 'Rubik,, sans-serif' },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

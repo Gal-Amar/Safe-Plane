@@ -1,19 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+
+body {
+  background-color: light-dark(rgba(181, 237, 245, 255), var(--mantine-color-dark-6));
+}
+
+
+
+/* ============ Header Tabs File =========== */
 
 .header {
   padding-top: var(--mantine-spacing-sm);
-  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-2), transparent);
-  margin-bottom: rem(120px);
+  /* background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6)); */
+  background-color: transparent;
+  border-bottom: rem(1px) solid light-dark(rgba(181, 237, 245, 255), transparent);
+  /* margin-bottom: rem(120px); */
 }
 
-.mainSection {
+.header-main-section {
   padding-bottom: var(--mantine-spacing-sm);
 }
 
 .user {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-dark-0));
+
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
-  border-radius: var(--mantine-radius-sm);
+  border-radius: var(--mantine-radius-lg);
   transition: background-color 100ms ease;
 
   &:hover {
@@ -44,10 +57,8 @@
 
   &::before,
   &::after {
-    background-color: light-dark(
-      var(--mantine-color-gray-2),
-      var(--mantine-color-dark-7)
-    ) !important;
+    background-color: light-dark(transparent,
+        var(--mantine-color-dark-7)) !important;
   }
 
   &:hover {
@@ -55,8 +66,114 @@
   }
 
   &[data-active] {
-    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
-    border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-7));
+    background-color: light-dark(rgba(181, 237, 245, 255), var(--mantine-color-dark-7));
+    border-color: light-dark(rgba(181, 237, 245, 255), var(--mantine-color-dark-7));
     border-bottom-color: transparent;
+    text-decoration: underline;
   }
+}
+
+/* ============== First Menu File ============== */
+.background-section {
+  position: relative;
+
+
+}
+
+.background-section::before {
+  content: "";
+  margin-top: 50px;
+  background-image: url('./assets/plane.jpeg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.4;
+}
+
+.first-menu-content {
+  position: relative;
+}
+
+.first-menu-p {
+  font-size: 25px;
+  /* line-height: 2rem; */
+}
+
+.cta {
+  font-family: "Rubik", sans-serif;
+}
+
+.cta_btn {
+  color: white;
+
+}
+
+a {
+  color: white;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.cta_btn-image {
+  overflow: hidden;
+  transform: rotate(0);
+  transition: var(--transition);
+}
+
+.cta_btn-image:hover {
+  transform: rotate(-10deg);
+}
+
+/* ============ Main Form File ============= */
+#main-form {
+  margin-top: 150px;
+  height: 500px;
+
+}
+
+.segmented-control-main-form-root {
+
+
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
+  box-shadow: var(--mantine-shadow-md);
+  border: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+}
+
+.segmented-control-main-form-indicator {
+
+  background-image: linear-gradient(to right,
+      var(--mantine-color-pink-filled),
+      var(--mantine-color-orange-filled));
+}
+
+.segment-control-main-form-control {
+  &::before {
+    display: none;
+  }
+}
+
+.segment-control-main-form-label {
+
+  &,
+  &:hover {
+    &[data-active] {
+      color: var(--mantine-color-white);
+    }
+  }
+}
+
+.date-picker-main-form-place-holder {
+  font-size: 1.1rem;
+}
+
+.mantine-Select-input {
+  font-size: 1.1rem;
 }
