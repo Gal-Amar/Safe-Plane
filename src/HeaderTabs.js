@@ -65,7 +65,7 @@ export function HeaderTabs() {
                 variant="outline"
                 visibleFrom="sm"
                 classNames={{
-                  root: tabs,
+                  root: "tabs",
                   list: "tabsList",
                   tab: "tab",
                 }}

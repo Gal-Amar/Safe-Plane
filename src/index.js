@@ -9,8 +9,10 @@ import 'mantine-flagpack/styles.css';
 import './index.css';
 
 const theme = createTheme({
-  fontFamily: "Rubik, sans-serif",
-  headings: { fontFamily: 'Rubik,, sans-serif' },
+  fontFamily: "Fredoka, sans-serif",
+  fontFamilyMonospace:  "Monaco, Courier, monospace",
+  headings: { fontFamily: 'Fredoka, sans-serif', 
+            fontWeight: '500'},
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

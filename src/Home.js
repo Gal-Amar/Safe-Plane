@@ -3,9 +3,9 @@ import MainForm from "./MainForm";
 
 const Home = () => {
   return (
-   <div className="div1">
+   <div className="home-page">
     <FirstMenu />
-    <MainForm />
+    <MainForm className='main-form'/>
    </div>
   );
 }

@@ -1,19 +1,14 @@
 import json
-result = dict()
-with open("countries.min.json", "r") as file:
-  raw = json.load(file)
-  raw = raw["countries"][0]
-  
-  for line in raw:
-    result[line] = []
-    for city in raw[line]:
-      if not f"{line}, {city}" in result[line]:
-        if city.startswith("`"):
-          result[line].append(f"{line}, {city[1:]}")
-        else:
-          result[line].append(f"{line}, {city}")
+result = list()
+with open("countries.json", "r") as file:
+  raw = json.load(file)["countries"]
 
-print(result["Israel"])
+  for country in raw:
+    country_name = country["countryname"]
+    cities = country["cities"]
+    result.append(country_name)
+    for city in cities:
+      result.append(city)
 
-#with open("countries.json", "w") as output:
-#   json.dump(result, output)
+with open("countries.min.json", "w") as output:
+  json.dump(result, output)

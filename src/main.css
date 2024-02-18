@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+:root {
+  --background-color: rgba(209, 253, 255,0.8);
+  --font-color: rgb(48, 60, 108);
+  --cards-color: rgb(251, 233, 166);
+  --cards-border-color:rgb(255, 216, 76);
+  --cards-input-color: rgb(255, 247, 214);
+  --cards-input-border-color: rgba(48, 60, 10,0.5);
+  --btn-color: #b4dfe5;
+  --main-btn-color: #f4976c;
 
-
+}
 body {
-  background-color: light-dark(rgba(181, 237, 245, 255), var(--mantine-color-dark-6));
+  background-color: light-dark(var(--background-color), var(--mantine-color-dark-6));
+  
 }
 
 
@@ -12,13 +23,12 @@ body {
 
 .header {
   padding-top: var(--mantine-spacing-sm);
-  /* background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6)); */
   background-color: transparent;
-  border-bottom: rem(1px) solid light-dark(rgba(181, 237, 245, 255), transparent);
-  /* margin-bottom: rem(120px); */
 }
 
 .header-main-section {
+
+
   padding-bottom: var(--mantine-spacing-sm);
 }
 
@@ -66,8 +76,8 @@ body {
   }
 
   &[data-active] {
-    background-color: light-dark(rgba(181, 237, 245, 255), var(--mantine-color-dark-7));
-    border-color: light-dark(rgba(181, 237, 245, 255), var(--mantine-color-dark-7));
+    background-color: light-dark(var(--background-color), var(--mantine-color-dark-7));
+    border-color: light-dark(var(--background-color), var(--mantine-color-dark-7));
     border-bottom-color: transparent;
     text-decoration: underline;
   }
@@ -99,7 +109,6 @@ body {
 
 .first-menu-p {
   font-size: 25px;
-  /* line-height: 2rem; */
 }
 
 .cta {
@@ -133,34 +142,71 @@ a:hover {
 }
 
 /* ============ Main Form File ============= */
-#main-form {
-  margin-top: 150px;
-  height: 500px;
 
+
+.main-form-title {
+  margin-bottom: 2rem;
+  color: var(--font-color);
 }
 
+/* CONTAINER */
+.responsive-container {
+  margin-top: 2rem;
+  max-width: 70rem;
+  height: 100rem;
+}
+
+.main-form-grid-root {
+  gap: 1rem;
+}
+
+.main-form-manu-card {
+  background-color: var(--cards-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  width: min-content;
+  margin: 0 2rem 0;
+  height: 100%;
+  padding: 0;
+  /* margin-left: 2rem; */
+  /* border-radius: 1rem; */
+
+ 
+}
+.main-form-checkbox-input {
+  border-color: transparent;
+  background-color: var(--cards-input-color);
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+
+}
+.main-form-checkbox-body:hover {
+  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+}
+/* Segmented  Control */
 .segmented-control-main-form-root {
-
-
-  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
-  box-shadow: var(--mantine-shadow-md);
-  border: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+  background-color: transparent;
+  height: 100%;
 }
 
 .segmented-control-main-form-indicator {
-
-  background-image: linear-gradient(to right,
-      var(--mantine-color-pink-filled),
-      var(--mantine-color-orange-filled));
+  border-radius: 1.5rem;
+  height: 4.5rem;
+  background-color: var(--cards-input-color);
 }
 
+
 .segment-control-main-form-control {
+  display: grid;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   &::before {
     display: none;
   }
 }
 
-.segment-control-main-form-label {
+/* .segment-control-main-form-label {
 
   &,
   &:hover {
@@ -168,12 +214,150 @@ a:hover {
       color: var(--mantine-color-white);
     }
   }
+} */
+/* .main-form-grid-col {
+  height: 30rem;
+} */
+
+.main-form-form-card-root {
+  background-color: var(--cards-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding-bottom: 2rem;
+  overflow: visible;
 }
 
+
+/* Date Picker */
+.date-picker-main-form-label {
+  font-size: medium;
+}
 .date-picker-main-form-place-holder {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  height: 2.4rem;
+}
+.date-picker-main-form-input{
+  min-width: 18rem;
+  height: 2.4rem;
+  border-color: transparent;
+  background-color: var(--cards-input-color);
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+
+  
 }
 
-.mantine-Select-input {
-  font-size: 1.1rem;
+.date-picker-main-form-input:hover {
+  transform: scale(1.01);
 }
+
+/* Ages Select */
+.ages-select-input {
+  background-color: var(--cards-input-color);
+  border-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+}
+
+
+.ages-select-input:hover {
+  transform: scale(1.01);
+}
+.ages-select-label {
+  font-size: medium;
+}
+
+.ages-select-wrapper {
+  width: 11rem;  
+}
+
+/* Counrt Select */
+.country-combobox-input {
+  background-color: var(--cards-input-color);
+  border-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+}
+.country-combobox-input:hover {
+  transform: scale(1.01);
+
+}
+
+.country-combobox-label {
+  font-size: medium;
+}
+/* .data-combobox-selected {
+  color:rgba(181, 237, 245, 255);
+} */
+
+/* Budget Slider */
+.range-slider-root{
+  
+  width: 25rem;
+}
+.range-slider-label {
+  font-size: medium;
+}
+
+/* .range-slider-bar   {
+  background-color: var(--cards-input-color);
+} */
+.range-slider-mark:hover{
+  transform: scale(1.01);
+}
+/* .range-slider-track {
+  background-color: var(--cards-border-color);
+  border-color: var(--cards-border-color);
+} */
+.range-slider-thumb{
+  background-color: var(--cards-border-color);
+
+}
+.slider-wrapper {
+  justify-content: center;
+}
+
+
+
+
+/* ADDITIONAL DATA */ 
+.add-data-btn {
+  background-color: var(--cards-input-color);
+  color: black;
+  font-weight: 450;
+
+}
+.add-data-btn:hover {
+  transform: scale(1.01);
+}
+.add-btn-none-active {
+  display: none;
+}
+.add-data-input {
+  border-color: transparent;
+  background-color: var(--cards-input-color);
+  
+}
+
+.flex-none-active {
+  display: none;
+}
+
+
+.input-btn {
+  background-color: rgba(245, 168, 173,0.5);
+}
+
+
+/* ===================== MEDIUM DEVICES ======================= */
+@media (min-width: 1024px) {
+  .segmented-control-main-form-root {
+    orientation:unset;
+  }
+}
+
+
+/* ===================== SMALL DEVICES ======================= */
+@media (min-width: 48em) {
+ 
+
+}
+
+
+
