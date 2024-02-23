@@ -23,26 +23,18 @@ const AdditionalData = (props) => {
   const [specialData, setSpecialData] = useState([]);
 
 
-  //recevies signal (add element +) or element's index
   const specialArrayHandler = (signal,setFormData) => {
     if(signal === "plus"){
       setSpecialCnt(specialCnt + 1);
-      setSpecialData(prevArray => [...prevArray, [true, specialCnt,'']]);
+      setSpecialData(prevArray => [...prevArray, [true, specialCnt-1,'']]); //initialize additiona data array
       
     }
     else {
       setSpecialCnt(specialCnt - 1);
-      deleteAddDataToFromData(signal, setFormData);  //deleting the value from the formData
+      deleteAddDataToFromData(signal, setFormData); //delete element fron fornData and special array 
     }
   }
 
-  const btnHandler = (index) => {
-    setBtnActive(prevState => {
-      const newState = [...prevState];
-      newState[index] = !newState[index];
-      return newState;
-    });
-  }
 
   const deleteAddDataToFromData = (index, setFormData) => {
     setSpecialData(prevArray => {
@@ -73,7 +65,15 @@ const AdditionalData = (props) => {
     }))
 
   }
-  
+
+  const btnHandler = (index) => {
+    setBtnActive(prevState => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  }
+
 
   return (
     <Grid>
@@ -135,7 +135,6 @@ const AdditionalData = (props) => {
                 &nbsp;
                 {` ${btn[0]} `}
               </Button>
-
             ))
           }
         </Flex>

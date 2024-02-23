@@ -1,32 +1,22 @@
 import React,{ useState } from 'react';
 import { Combobox, InputBase, useCombobox } from '@mantine/core';
-import { IconBrandAirbnb, IconPinFilled, IconBulbFilled ,IconGlobeFilled} from '@tabler/icons-react';
+import { IconMap, IconPinFilled, IconBulbFilled ,IconGlobeFilled} from '@tabler/icons-react';
 // import MyLocation from './myLocation'; 
 import  {  useEffect } from 'react';
+import countries from './../assets/countries.min.json';
+import MyLocation from './MyLocation';
 
 
 
 
-
-export default function CountrySelectCreatable(props) {
-  const [add,setAdd] = useState('')
-
-  useEffect(()=>{
-    navigator.geolocation.getCurrentPosition(pos=>{
-        const {latitude,longitude} = pos.coords;
-        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-        fetch(url).then(res=>res.json()).then(data=>setAdd(data.address.country + ", " + data.address.town))
-    })
-  },[])
-
- 
+export default function CountrySelectCreatable(props) { 
   const [value, setValue] = useState(null);
   const [search, setSearch] = useState('');
-  const [icon, setIcon] = useState(<IconBrandAirbnb />);
+  const [icon, setIcon] = useState(<IconMap />);
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
-  const [data, setData] = useState([(props.placeholder === 'Origin' ) ? "Use my location" : "Feeling spontaneous",...props.countries]);
+  const [data, setData] = useState([(props.placeholder === 'Origin' ) ? "Use my location" : "Feeling spontaneous",...countries]);
   const exactOptionMatch = data.some((item) => item.toLowerCase() === search.toLowerCase());
   const filteredOptions = exactOptionMatch
     ? data
@@ -39,24 +29,34 @@ export default function CountrySelectCreatable(props) {
     
   ));
 
-  const handleCountryChange = (value) => {
+  const handleCountryChange =  (value) => {
+    
     if (value === 'Feeling spontaneous' ) {
       setIcon(<IconBulbFilled/>)
     }
     else if ( value === 'Use my location'){
       setIcon(<IconPinFilled/>)
+      // MyLocation( props.setFormData, props.formData);
+
+
     }
     else {
       setIcon(<IconGlobeFilled/>)
     }
-    (props.placeholder === 'Origin' )?  props.setFormData({...props.formData, originCountry: value}) :  props.setFormData({...props.formData, destCountry: value})
+
+    if (props.placeholder === 'Origin') {
+      if (value !== 'Use my location') {
+        props.setFormData({ ...props.formData, originCountry: value });
+      }
+    } else {
+      props.setFormData({ ...props.formData, destCountry: value });
+    }
   };
- 
+
 
   return (
     <Combobox
      
-      
       store={combobox}
       withinPortal={false}
       onOptionSubmit={(val) => {
@@ -75,6 +75,7 @@ export default function CountrySelectCreatable(props) {
      
        <Combobox.Target   >
          <InputBase
+         w={280}
           classNames=
           {{input: "country-combobox-input",
             label: "country-combobox-label",
@@ -86,8 +87,7 @@ export default function CountrySelectCreatable(props) {
           onChange={(event) => {
             combobox.openDropdown();
             combobox.updateSelectedOptionIndex();
-            setSearch((search === 'Use my location' ) ? {add} : event.currentTarget.value);
-           
+            setSearch(event.currentTarget.value);
           }}
           onClick={() => combobox.openDropdown()}
           onFocus={() => combobox.openDropdown()}
@@ -96,13 +96,11 @@ export default function CountrySelectCreatable(props) {
             setSearch(value || '');
           }}
           placeholder={(props.placeholder === 'Origin') ? 
-          {add} : (props.placeholder === 'Return') ?
+          'From' : (props.placeholder === 'Return') ?
            'From' : 'To'}
           rightSectionPointerEvents="none"
           leftSection={icon}
           radius={10}
-          defaultValue={(props.placeholder === 'Origin' )? {add} : ''}
-
           
         />
       </Combobox.Target>

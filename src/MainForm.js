@@ -1,112 +1,31 @@
-import { MantineProvider, Container, SegmentedControl, Title, Group, Center, Checkbox, Flex, Grid, Card, rem, GridCol } from '@mantine/core';
+import { Container, Title, Group, Center, Checkbox, Flex, Grid, Card } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+
 import React, { useState, useEffect } from 'react';
-import countries from './assets/countries.min.json'
-import DatePickerMainForm from './DatePickerMainForm';
-import AgesSelect from './AgesSelect';
-import CountrySelectCreatable from './CountrySelectCreatable';
-import BudgetRange from './BudgetRange';
-import AditionalData from './AdditionalData'
-
-import { IconFriends } from '@tabler/icons-react';
-import { MdFamilyRestroom, MdMan4 } from "react-icons/md";
-import { GiThreeFriends } from "react-icons/gi";
-
-
-
-
-
-function GradientSegmentedControl(props) {
-
-
-  return (
-    <SegmentedControl
-      orientation={props.matches ? 'horizontal' : 'vertical'}
-      radius={10}
-      size="md"
-      data={[
-        {
-          value: 'Couple Vacation',
-          label: (
-            <Center style={{ gap: 10 }}>
-              <div>
-                <IconFriends style={{ width: rem(23), height: rem(23) }} />
-                <br />Couple Vacation
-              </div>
-            </Center>
-          )
-        },
-        {
-          value: 'Family Vacation',
-          label: (
-            <Center style={{ gap: 10 }}>
-              <div>
-                <MdFamilyRestroom style={{ width: rem(23), height: rem(23) }} />
-                <br /> Family Vacation
-              </div>
-            </Center>
-          )
-        }
-        ,
-        {
-          value: 'Friends Vacation',
-          label: (
-            <Center style={{ gap: 10 }}>
-              <div>
-                <GiThreeFriends style={{ width: rem(23), height: rem(23) }} />
-                <br />Friends Vacation
-              </div>
-            </Center>
-          )
-        },
-        {
-          value: 'Solo Vacation',
-          label: (
-            <Center style={{ gap: 10 }}>
-              <div>
-                <MdMan4 style={{ width: rem(23), height: rem(23) }} />
-                <br />Solo Vacation
-              </div>
-            </Center>
-          )
-        }
-      ]}
-
-      classNames={{
-        root: 'segmented-control-main-form-root',
-        indicator: 'segmented-control-main-form-indicator ',
-        control: 'segment-control-main-form-control',
-        label: 'segment-control-main-form-label',
-        input: 'segment-control-main-form-input',
-
-      }}
-    />
-  );
-}
-
-// const theme = createTheme({
-//   components: {
-//     SegmentedControl: SegmentedControl.extend({
-//       classNames: (_, { size }) => ({
-//         root: cx({ [classes.responsiveContainer]: size === 'responsive' }),
-//       }),
-//     }),
-//   },
-// });
+import DatePickerMainForm from './form-components/DatePickerMainForm';
+import AgesSelect from './form-components/AgesSelect';
+import CountrySelectCreatable from './form-components/CountrySelectCreatable';
+import BudgetRange from './form-components/BudgetRange';
+import AdditionalData from './form-components/AdditionalData';
+import MySegmentedControl from './form-components/MySegmentedControl';
+import { Notifications } from '@mantine/notifications';
+import '@mantine/notifications/styles.css';
 
 const MainForm = () => {
-  const [add, setAdd] = useState('')
   const matches = useMediaQuery('(max-width: 48em)');
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(pos => {
-      const { latitude, longitude } = pos.coords;
-      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-      fetch(url).then(res => res.json()).then(data => setAdd(data.address.country + ", " + data.address.town))
-    })
-  }, [])
+
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(pos => {
+  //     const { latitude, longitude } = pos.coords;
+  //     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+  //     fetch(url).then(res => res.json()).then(data => setAdd(data.address.country + ", " + data.address.city))
+   
+  //   })
+  // }, [])
 
 
   const [formData, setFormData] = useState({
+    vacationType: '',
     originCountry: '',
     destCountry: '',
     dates: [0, 0],
@@ -127,9 +46,8 @@ const MainForm = () => {
 
 
   return (
-
-
-    <MantineProvider>
+    <div>
+      <Notifications position="bottom-right" />
       <Container size="responsive" className='responsive-container' id="main-form">
         <Title size={45} className='main-form-title'>Plan your next trip!</Title>
         <Grid
@@ -144,7 +62,7 @@ const MainForm = () => {
           <Grid.Col span={{ sm: 3, xs: 12 }} >
             <Center>
               <Card radius={30} className="main-form-manu-card" style={matches ? { width: 'max-content', margin: 0 } : {}}>
-                <GradientSegmentedControl matches={matches} />
+                <MySegmentedControl matches={matches} setFormData={setFormData} />
               </Card>
             </Center>
           </Grid.Col>
@@ -168,8 +86,8 @@ const MainForm = () => {
                   </Group>
 
                   <Group gap="lg" ml={15} mt={15} align='center'>
-                    <CountrySelectCreatable countries={countries} formData={formData} setFormData={setFormData} placeholder='Origin' />
-                    <CountrySelectCreatable countries={countries} formData={formData} setFormData={setFormData} placeholder='Destination' />
+                    <CountrySelectCreatable  formData={formData} setFormData={setFormData} placeholder='Origin' />
+                    <CountrySelectCreatable  formData={formData} setFormData={setFormData} placeholder='Destination' />
                     <Checkbox
                       classNames={{
                         body: 'main-form-checkbox-body',
@@ -184,7 +102,7 @@ const MainForm = () => {
                       size="md"
                       onChange={(event) => setFormData({ ...formData, checked: event.currentTarget.checked })}
                     />
-                    {formData.checked && <CountrySelectCreatable countries={countries} formData={formData} setFormData={setFormData} placeholder='Return' />}
+                    {formData.checked && <CountrySelectCreatable formData={formData} setFormData={setFormData} placeholder='Return' />}
                   </Group>
                 </Flex>
               </Center>
@@ -192,14 +110,15 @@ const MainForm = () => {
               <Title size={20}>
                 More to add?
               </Title>
-              <AditionalData formData={formData} setFormData={setFormData} />
+              <AdditionalData formData={formData} setFormData={setFormData} />
             </Card>
           </Grid.Col>
 
         </Grid>
-        {console.log(formData)}
+      
+       {console.log(formData)}
       </Container>
-    </MantineProvider>
+    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
 
   );

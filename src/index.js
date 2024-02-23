@@ -8,6 +8,7 @@ import '@mantine/dates/styles.css';
 import 'mantine-flagpack/styles.css';
 import './index.css';
 
+
 const theme = createTheme({
   fontFamily: "Fredoka, sans-serif",
   fontFamilyMonospace:  "Monaco, Courier, monospace",
