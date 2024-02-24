@@ -2,19 +2,34 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 :root {
-  --background-color: rgba(209, 253, 255,0.8);
-  --font-color: rgb(48, 60, 108);
+  /* --background-color: rgba(209, 253, 255,0.8); */
+  --background-color-light:rgb(255, 247, 214) ;
+  --background-color-dark:rgba(189, 168, 163,0.7) ;
+
+  --font-color: #57333d; 
   --cards-color: rgb(251, 233, 166);
   --cards-border-color:rgb(255, 216, 76);
   --cards-input-color: rgb(255, 247, 214);
+  /* --cards-color: #bda8a3;
+  --cards-border-color:#bda8a3;
+  --cards-input-color:  #fff2d9; */
   --cards-input-border-color: rgba(48, 60, 10,0.5);
   --btn-color: #b4dfe5;
   --main-btn-color: #f4976c;
+  --hover-color:rgba(255, 247, 214,0.5);
 
 }
+
+ ::-webkit-scrollbar{
+    display: none;
+  }
+
 body {
-  background-color: light-dark(var(--background-color), var(--mantine-color-dark-6));
-  
+  background-color: light-dark(var(--background-color-light), var(--mantine-color-dark-6));
+  width: 100%;
+  overflow-x: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .home-page{
@@ -25,12 +40,13 @@ body {
 
 .header {
   padding-top: var(--mantine-spacing-sm);
-  background-color: transparent;
+  padding-bottom: var(--mantine-spacing-sm);
+  width: 100%;
+  background-color: rgba(189, 168, 163,0.7);
+  /* border-bottom: 1px solid black; */
 }
 
-.header-main-section {
-  padding-bottom: var(--mantine-spacing-sm);
-}
+
 
 .user {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-dark-0));
@@ -40,7 +56,7 @@ body {
   transition: background-color 100ms ease;
 
   &:hover {
-    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+    background-color: light-dark(var(--hover-color), var(--mantine-color-dark-8));
   }
 
   @media (max-width: $mantine-breakpoint-xs) {
@@ -53,6 +69,7 @@ body {
 }
 
 .tabsList {
+  background-color: transparent;
   &::before {
     display: none;
   }
@@ -60,111 +77,84 @@ body {
 
 .tab {
   font-weight: 500;
-  height: rem(38);
-  background-color: transparent;
-  position: relative;
-  bottom: -1px;
-
-  &::before,
-  &::after {
-    background-color: light-dark(transparent,
-        var(--mantine-color-dark-7)) !important;
-  }
-
+  font-size: medium;
+ 
   &:hover {
-    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
-  }
-
-  &[data-active] {
-    background-color: light-dark(var(--background-color), var(--mantine-color-dark-7));
-    border-color: light-dark(var(--background-color), var(--mantine-color-dark-7));
-    border-bottom-color: transparent;
-    text-decoration: underline;
+    background-color: light-dark(var(--hover-color), var(--mantine-color-dark-5));
   }
 }
 
 /* ============== First Menu File ============== */
-.background-section {
-  position: relative;
 
-
+.first-manu-card-section{
+  display: grid;
+  justify-items: center;
+  margin-bottom: 1rem;
+}
+.first-manu-text{
+text-wrap: wrap;
+width: 60%;
+text-align: center;
+}
+.first-manu-card-root{
+  background-color: transparent;
+}
+.title-root {
+  font-size: 4rem;
+  color: var(--font-color);
+}
+.cta-btn {
+  width: 20rem;
+}
+.cta-btn:hover {
+  transform: scale(1.01);
 }
 
-.background-section::before {
-  content: "";
-  margin-top: 50px;
-  background-image: url('./assets/plane.jpeg');
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 0.4;
+.cta-btn-login{
+  color: var(--main-btn-color);
 }
+/* .first-manu-flex-root {
+  font-size: 4rem;
+} */
 
-.first-menu-content {
-  position: relative;
-}
 
-.first-menu-p {
-  font-size: 25px;
-}
 
-.cta {
-  font-family: "Rubik", sans-serif;
-}
-
-.cta_btn {
-  color: white;
-
-}
-
-a {
-  color: white;
-  transition: var(--transition);
-  text-decoration: none;
-}
-
-a:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-.cta_btn-image {
-  overflow: hidden;
-  transform: rotate(0);
-  transition: var(--transition);
-}
-
-.cta_btn-image:hover {
-  transform: rotate(-10deg);
-}
-
+/* .wrap {
+  display: inline-block;
+  font-size: 32px;
+  transform: scale(.5, 1);
+} */
 /* ============ Main Form File ============= */
 
 
 .main-form-title {
   margin-bottom: 2rem;
   color: var(--font-color);
+  width: 100%;
+  /* background-color: #f4976c; */
 }
 
 /* CONTAINER */
 .responsive-container {
-  margin-top: 2rem;
+  padding-top: 2rem;
   max-width: 70rem;
   margin-bottom: 5rem;
+  /* border-top: 1px solid black; */
+}
+.main-form-section{
+  background-color: rgba(189, 168, 163,0.7);
+
 }
 
-.main-form-grid-root {
+/* .main-form-grid-root {
   gap: 1rem;
-}
+} */
 
 .main-form-manu-card {
   background-color: var(--cards-color);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: min-content;
-  margin: 0 2rem 0;
+  /* margin: 0 2rem 0; */
   height: 100%;
   padding: 0;
 }
@@ -207,7 +197,6 @@ a:hover {
 .main-form-form-card-root {
   background-color: var(--cards-color);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding-bottom: 2rem;
   overflow: visible;
 }
 
@@ -267,9 +256,7 @@ a:hover {
 .country-combobox-label {
   font-size: medium;
 }
-/* .data-combobox-selected {
-  color:rgba(181, 237, 245, 255);
-} */
+
 
 /* Budget Slider */
 .range-slider-root{
@@ -325,11 +312,29 @@ a:hover {
 .input-btn {
   background-color: rgba(245, 168, 173,0.5);
 }
-
+.main-form-btn-group{
+  display: grid;
+  justify-items: right;
+  margin-top: 1rem;
+  float: right;
+}
+.submit-btn{
+  width: 9rem;
+}
+.cencel-btn {
+  background-color: transparent;
+  font-weight: 600;
+  color: black;
+}
+.submit-btn:hover, .cencel-btn:hover {
+  transform: scale(1.03);
+}
 
 /* ===================== MEDIUM DEVICES ======================= */
-@media (min-width: 1024px) {
- 
+@media (max-width: 1024px) {
+  .title-root {
+    font-size: 3rem;
+  }
 }
 
 
@@ -356,6 +361,8 @@ a:hover {
   .range-slider-root{
     width: 15rem;
   }
+
+ 
 }
 
 

@@ -1,4 +1,4 @@
-import { Container, Title, Group, Center, Checkbox, Flex, Grid, Card } from '@mantine/core';
+import { Container, Title, Group, Center, Checkbox, Flex, Grid, Card, Anchor, Button } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 import React, { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import BudgetRange from './form-components/BudgetRange';
 import AdditionalData from './form-components/AdditionalData';
 import MySegmentedControl from './form-components/MySegmentedControl';
 import { Notifications } from '@mantine/notifications';
+import { IconPlane } from '@tabler/icons-react';
 import '@mantine/notifications/styles.css';
 
 const MainForm = () => {
@@ -19,7 +20,7 @@ const MainForm = () => {
   //     const { latitude, longitude } = pos.coords;
   //     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
   //     fetch(url).then(res => res.json()).then(data => setAdd(data.address.country + ", " + data.address.city))
-   
+
   //   })
   // }, [])
 
@@ -46,7 +47,7 @@ const MainForm = () => {
 
 
   return (
-    <div>
+    <div className='main-form-section'>
       <Notifications position="bottom-right" />
       <Container size="responsive" className='responsive-container' id="main-form">
         <Title size={45} className='main-form-title'>Plan your next trip!</Title>
@@ -80,14 +81,14 @@ const MainForm = () => {
                   direction="column"
                   wrap="wrap"
                 >
-                  <Group gap="lg" ml={15}  mt={15} align='start'>
+                  <Group gap="lg" ml={15} mt={15} align='start'>
                     <AgesSelect formData={formData} setFormData={setFormData} />
                     <DatePickerMainForm formData={formData} setFormData={setFormData} />
                   </Group>
 
                   <Group gap="lg" ml={15} mt={15} align='center'>
-                    <CountrySelectCreatable  formData={formData} setFormData={setFormData} placeholder='Origin' />
-                    <CountrySelectCreatable  formData={formData} setFormData={setFormData} placeholder='Destination' />
+                    <CountrySelectCreatable formData={formData} setFormData={setFormData} placeholder='Origin' />
+                    <CountrySelectCreatable formData={formData} setFormData={setFormData} placeholder='Destination' />
                     <Checkbox
                       classNames={{
                         body: 'main-form-checkbox-body',
@@ -111,14 +112,30 @@ const MainForm = () => {
                 More to add?
               </Title>
               <AdditionalData formData={formData} setFormData={setFormData} />
+
+              <div className="main-form-btn-group">
+                <Group>
+                  <Button className='cencel-btn' radius={10}> Cencel </Button>
+                  <Button
+                    className='submit-btn'
+                    radius={10}
+                    variant="gradient"
+                    justify='space-between'
+                    rightSection={<IconPlane />}
+                    gradient={{ from: '#57333d', to: '#f4976c', deg: 90 }}
+                  >
+                    I'm Ready!
+                  </Button>
+                </Group>
+              </div>
+
             </Card>
           </Grid.Col>
-
         </Grid>
-      
-       {console.log(formData)}
+        {console.log(formData)}
       </Container>
-    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+
+    </div>
 
 
   );
