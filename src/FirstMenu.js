@@ -1,57 +1,75 @@
-import React from 'react'
-import { Grid, Image, Card, AspectRatio, Text, Anchor, Button, rem, Title, Group, Center } from '@mantine/core'
+import React from "react";
+import { useDisclosure } from "@mantine/hooks";
+import {
+  Grid,
+  Image,
+  Card,
+  AspectRatio,
+  Text,
+  Anchor,
+  Button,
+  Title,
+} from "@mantine/core";
 import bgImage from "./assets/image1.jpeg";
+import Login from "./account-components/Login";
 
+//Smoother the scrolling to main form section
+const scrollToSection = () => {
+  const section = document.getElementById("main-form");
+  section.scrollIntoView({ behavior: "smooth" });
+};
 
 const FirstMenu = () => {
-  return (
-    <Grid id="first-menu" gutter={0} align='center' justify='center'>
+  const [opened, { open, close }] = useDisclosure(false);
 
-      <Grid.Col span={{ sm: 5, xs: 12 }} >
-        <Card w={'100%'}
+  return (
+    <Grid id="first-menu" gutter={0} align="center" justify="center">
+      <Grid.Col span={{ sm: 5, xs: 12 }}>
+        <Card
+          w={"100%"}
           classNames={{
-            section: 'first-manu-card-section',
-            root: 'first-manu-card-root',
-          }} >
+            section: "first-manu-card-section",
+            root: "first-manu-card-root",
+          }}
+        >
           <Card.Section>
-            <Title classNames={{ root: 'title-root' }} >
-              Welcome to <br /> SAFE PLAN</Title>
+            <Title classNames={{ root: "title-root" }}>
+              Welcome to <br /> SAFE PLAN
+            </Title>
           </Card.Section>
-          <Card.Section >
-            <Text classNames={{root:'first-manu-text'}} >
-              Your perfect vacation starts here.
-              Tell us what you love, and we'll customize a
-              memorable trip just for you.
-              
+          <Card.Section>
+            <Text classNames={{ root: "first-manu-text" }}>
+              Your perfect vacation starts here. Tell us what you love, and
+              we'll customize a memorable trip just for you.
             </Text>
           </Card.Section>
           <Card.Section>
-            <Anchor href='#main-form' className='cta-btn'>
+            <Anchor onClick={scrollToSection} className="cta-btn">
               <Button
-                className='cta-btn'
+                className="cta-btn"
                 radius={20}
                 variant="gradient"
-                gradient={{ from: '#57333d', to: '#f4976c', deg: 90 }}
+                gradient={{ from: "#57333d", to: "#f4976c", deg: 90 }}
               >
-                Let's get planning!</Button>
+                Let's get planning!
+              </Button>
             </Anchor>
-            <Anchor href={"/"} className='cta-btn-login'>Or if you have an account... Log in here!</Anchor>
+            <Anchor onClick={open} className="cta-btn-login">
+              If you wish to view your saved trips... Log in!
+            </Anchor>
+            <Login open={opened} close={close} />
           </Card.Section>
         </Card>
-      </Grid.Col >
+      </Grid.Col>
 
       <Grid.Col span={{ sm: 7, xs: 12 }}>
-        <AspectRatio ratio={1.4}  >
-
-          <Image src={bgImage} className='first-manu-bgImage' />
+        <AspectRatio ratio={1} style={{ maxHeight: "35rem" }}>
+          <Image src={bgImage} className="first-manu-bgImage" />
         </AspectRatio>
       </Grid.Col>
     </Grid>
-
-
-  )
-}
-
+  );
+};
 
 // const FirstMenu = () => {
 //   <Grid justify="center" align="center">
@@ -64,4 +82,4 @@ const FirstMenu = () => {
 //   </Grid>
 // }
 
-export default FirstMenu
+export default FirstMenu;

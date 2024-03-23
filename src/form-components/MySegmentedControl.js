@@ -1,33 +1,32 @@
-import {  SegmentedControl, Center, rem } from '@mantine/core';
+import { SegmentedControl, Center, rem } from "@mantine/core";
 
-import { IconFriends } from '@tabler/icons-react';
+import { IconFriends } from "@tabler/icons-react";
 import { MdFamilyRestroom, MdMan4 } from "react-icons/md";
 import { GiThreeFriends } from "react-icons/gi";
 
-
 function MySegmentedControl(props) {
-
-
   return (
     <SegmentedControl
-      orientation={props.matches ? 'horizontal' : 'vertical'}
+      orientation={props.matches ? "horizontal" : "vertical"}
       radius={10}
-      onChange = {(value) => props.setFormData({ ...props.formData, vacationType: value })}
+      // onChange = {(value) => props.setFormData({ ...props.formData, vacationType: value })}
+      {...props.form.getInputProps("vacationType")}
       size="md"
       data={[
         {
-          value: 'Couple Vacation',
+          value: "Couple Vacation",
           label: (
             <Center style={{ gap: 10 }}>
               <div>
                 <IconFriends style={{ width: rem(23), height: rem(23) }} />
-                <br />Couple Vacation
+                <br />
+                Couple Vacation
               </div>
             </Center>
-          )
+          ),
         },
         {
-          value: 'Family Vacation',
+          value: "Family Vacation",
           label: (
             <Center style={{ gap: 10 }}>
               <div>
@@ -35,40 +34,39 @@ function MySegmentedControl(props) {
                 <br /> Family Vacation
               </div>
             </Center>
-          )
-        }
-        ,
+          ),
+        },
         {
-          value: 'Friends Vacation',
+          value: "Friends Vacation",
           label: (
             <Center style={{ gap: 10 }}>
               <div>
                 <GiThreeFriends style={{ width: rem(23), height: rem(23) }} />
-                <br />Friends Vacation
+                <br />
+                Friends Vacation
               </div>
             </Center>
-          )
+          ),
         },
         {
-          value: 'Solo Vacation',
+          value: "Solo Vacation",
           label: (
             <Center style={{ gap: 10 }}>
               <div>
                 <MdMan4 style={{ width: rem(23), height: rem(23) }} />
-                <br />Solo Vacation
+                <br />
+                Solo Vacation
               </div>
             </Center>
-          )
-        }
+          ),
+        },
       ]}
-
       classNames={{
-        root: 'segmented-control-main-form-root',
-        indicator: 'segmented-control-main-form-indicator ',
-        control: 'segment-control-main-form-control',
-        label: 'segment-control-main-form-label',
-        input: 'segment-control-main-form-input',
-
+        root: "segmented-control-main-form-root",
+        indicator: "segmented-control-main-form-indicator ",
+        control: "segment-control-main-form-control",
+        label: "segment-control-main-form-label",
+        input: "segment-control-main-form-input",
       }}
     />
   );
